@@ -1,0 +1,12 @@
+lib/TinyDNS/Reader.pm
+lib/TinyDNS/Record.pm
+ChangeLog
+LICENSE
+Makefile.PL
+dump-zones
+MANIFEST
+README.md
+META.yml
+t/00-load.t
+t/10-test-strict.t
+t/20-dns-records.t
