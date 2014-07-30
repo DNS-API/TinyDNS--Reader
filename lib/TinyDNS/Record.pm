@@ -284,6 +284,36 @@ sub value
 
 =begin doc
 
+Add a new value to the existing record.
+
+This is added by the L<TinyDNS::Reader::Merged> module.
+
+=end doc
+
+=cut
+
+sub add
+{
+    my ( $self, $addition ) = (@_);
+
+    my $value = $self->{ 'value' };
+    if ( ref \$value eq "SCALAR" )
+    {
+        my $x;
+        push( @$x, $value );
+        push( @$x, $addition );
+        $self->{ 'value' } = $x;
+    }
+    else
+    {
+        push( @$value, $addition );
+        $self->{ 'value' } = $value;
+    }
+}
+
+
+=begin doc
+
 Conver the record to a string, suitable for printing.
 
 =end doc
