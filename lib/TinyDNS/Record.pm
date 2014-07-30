@@ -338,5 +338,17 @@ sub stringify
 
 }
 
+sub hash
+{
+    my ($self) = (@_);
+
+    my $hash;
+    $hash .= $self->type();
+    $hash .= $self->name();
+    $hash .= $self->value();
+    $hash .= $self->ttl();
+
+    return ($hash);
+}
 
 1;
