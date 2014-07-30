@@ -43,7 +43,7 @@ package TinyDNS::Reader;
 
 use TinyDNS::Record;
 
-our $VERSION = '0.3';
+our $VERSION = '0.4';
 
 
 =begin doc
