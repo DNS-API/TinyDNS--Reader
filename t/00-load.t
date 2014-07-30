@@ -3,11 +3,12 @@
 use strict;
 use warnings;
 
-use Test::More tests => 4;
+use Test::More tests => 5;
 
 BEGIN
 {
     use_ok("TinyDNS::Reader","We could load the module" );
+    use_ok("TinyDNS::Reader::Merged","We could load the module" );
     use_ok("TinyDNS::Record","We could load the module" );
 }
 
