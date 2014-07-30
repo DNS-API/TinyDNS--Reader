@@ -102,7 +102,7 @@ is( $all[0]->{ 'name' }, "foo.example.com", "Got the right name" );
 #
 # Test we got an array
 #
-$val = $all[0]->{ 'value' };
+my $val = $all[0]->{ 'value' };
 is( ref $val,      "ARRAY", "We got an array" );
 is( scalar(@$val), 2,       "We found two values" );
 
