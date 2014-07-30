@@ -101,8 +101,18 @@ sub new
     #
     #  Create our child object.
     #
-    die "No file" unless ( $supplied{ 'file' } );
-    $self->{ 'obj' } = TinyDNS::Reader->new( file => $supplied{ 'file' } );
+    if ( $supplied{ 'file' } )
+    {
+        $self->{ 'obj' } = TinyDNS::Reader->new( file => $supplied{ 'file' } );
+    }
+    elsif ( $supplied{ 'text' } )
+    {
+        $self->{ 'obj' } = TinyDNS::Reader->new( text => $supplied{ 'text' } );
+    }
+    else
+    {
+        die "Missing 'text' or 'file' argument";
+    }
     return $self;
 }
 
