@@ -15,7 +15,7 @@ WriteMakefile(
     PREREQ_PM    => \%prereq_pm,
     ABSTRACT     => 'Parser for TinyDNS records.',
     AUTHOR       => 'Steve Kemp <steve@steve.org.uk>',
-
+    LICENSE      => 'perl_5',
 
     META_MERGE => {
         resources => {
