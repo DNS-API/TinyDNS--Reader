@@ -27,3 +27,12 @@ WriteMakefile(
                   },
              );
 
+
+package MY;
+
+sub metafile {
+        my $self    = shift;
+        my $meta    = $self->SUPER::metafile_target(@_);
+        my ($extra) = $self->echo('license: perl_5', 'MYMETA.yml', 1);
+        return "$meta\t$extra\n";
+}
