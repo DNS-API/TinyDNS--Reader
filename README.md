@@ -22,7 +22,6 @@ Compatibility Notes
 This module was put together for the [Git-based DNS hosting service](https://dns-api.com/), and it wasn't initially planned to be added to CPAN, because the name implies it can parse real/genuine/complete TinyDNS records, however that is not the case:
 
 * We ignore SOA records.
-* We ignore NS records.
 * Our TXT record (which should have a `:`-prefix) is non-standard/weird.
        * We use `T:name:value[:ttl]` instead.  Which is cleaner.
 
