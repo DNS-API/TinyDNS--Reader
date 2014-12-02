@@ -12,7 +12,7 @@ It is not quite valid because:
 =over 8
 
 =item *
-We ignore NS and SOA records, which Amazon would handle for us.
+We SOA records, which Amazon would handle for us.
 
 =item *
 Our TXT records handling uses "T" not ":".
@@ -26,31 +26,9 @@ There are probably other differences.
 
 =cut
 
-=head1 AUTHOR
-
-Steve Kemp <steve@steve.org.uk>
+=head1 METHODS
 
 =cut
-
-=head1 COPYRIGHT AND LICENSE
-
-Copyright (C) 2014 Steve Kemp <steve@steve.org.uk>.
-
-This code was developed for an online Git-based DNS hosting solution,
-which can be found at:
-
-=over 8
-
-=item *
-https://dns-api.com/
-
-=back
-
-This library is free software. You can modify and or distribute it under
-the same terms as Perl itself.
-
-=cut
-
 
 use strict;
 use warnings;
@@ -68,13 +46,12 @@ use overload '""' => 'stringify';
 
 
 
-=begin doc
+=head2 new
 
-Constructor.
+Constructor, which sets the type of the object.
 
-Set the type of the object.
-
-=end doc
+The constructor is expexected to be passed a valid line of text which
+describes a single record, for example C<+example.example.com:1.2.3.4:200>.
 
 =cut
 
@@ -203,18 +180,16 @@ sub new
     else
     {
         carp "Unknown record type [$rec]: $line";
-        return undef;
+        return;
     }
     return $self;
 
 }
 
 
-=begin doc
+=head2 valid
 
-Is the given record valid?  If it has a type then it must be.
-
-=end doc
+Is this record valid?  Return 0 or 1 as appropriate.
 
 =cut
 
@@ -226,11 +201,9 @@ sub valid
 }
 
 
-=begin doc
+=head2 type
 
-Get the type of record this object holds.
-
-=end doc
+Return the type this record has, such as "A", "AAAA", "NS", etc.
 
 =cut
 
@@ -242,11 +215,11 @@ sub type
 }
 
 
-=begin doc
+=head2 ttl
 
-Get the TTL of this object.
+Return the TTL of this recrd.
 
-=end doc
+If no TTL was explicitly specified we default to 300 seconds, or five minutes.
 
 =cut
 
@@ -257,11 +230,9 @@ sub ttl
 }
 
 
-=begin doc
+=head2 name
 
 Get the name of this record.
-
-=end doc
 
 =cut
 
@@ -272,11 +243,9 @@ sub name
 }
 
 
-=begin doc
+=head2 value
 
 Get the value of this record.
-
-=end doc
 
 =cut
 
@@ -288,13 +257,12 @@ sub value
 }
 
 
-=begin doc
+=head2 add
 
 Add a new value to the existing record.
 
-This is added by the L<TinyDNS::Reader::Merged> module.
+This is used by the L<TinyDNS::Reader::Merged> module.
 
-=end doc
 
 =cut
 
@@ -318,11 +286,9 @@ sub add
 }
 
 
-=begin doc
+=head2 stringify
 
-Conver the record to a string, suitable for printing.
-
-=end doc
+Convert the record to a string, suitable for printing.
 
 =cut
 
@@ -338,6 +304,13 @@ sub stringify
 
 }
 
+
+=head2 hash
+
+Return a consistent hash of the record.
+
+=cut
+
 sub hash
 {
     my ($self) = (@_);
@@ -352,3 +325,29 @@ sub hash
 }
 
 1;
+
+
+=head1 AUTHOR
+
+Steve Kemp <steve@steve.org.uk>
+
+=cut
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright (C) 2014 Steve Kemp <steve@steve.org.uk>.
+
+This code was developed for an online Git-based DNS hosting solution,
+which can be found at:
+
+=over 8
+
+=item *
+https://dns-api.com/
+
+=back
+
+This library is free software. You can modify and or distribute it under
+the same terms as Perl itself.
+
+=cut
