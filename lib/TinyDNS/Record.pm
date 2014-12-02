@@ -137,6 +137,18 @@ sub new
             $self->{ 'value' }    = $self->{ 'priority' } . " " . $data[1];
         }
     }
+    elsif ( $rec eq '&' )
+    {
+
+        #
+        #  NS
+        #   &host.example.com:IGNORED:ns1.secure.net:ttl
+        #
+        $self->{ 'type' }  = "NS";
+        $self->{ 'name' }  = $data[0];
+        $self->{ 'value' } = $data[2];
+        $self->{ 'ttl' }   = $data[3] || 300;
+    }
     elsif ( ( $rec eq 'c' ) || ( $rec eq 'C' ) )
     {
 
