@@ -12,7 +12,7 @@ It is not quite valid because:
 =over 8
 
 =item *
-We SOA records, which Amazon would handle for us.
+We ignore SOA records, which Amazon would handle for us.
 
 =item *
 Our TXT records handling uses "T" not ":".
@@ -50,7 +50,7 @@ use overload '""' => 'stringify';
 
 Constructor, which sets the type of the object.
 
-The constructor is expexected to be passed a valid line of text which
+The constructor is expected to be passed a valid line of text which
 describes a single record, for example C<+example.example.com:1.2.3.4:200>.
 
 =cut
@@ -347,7 +347,7 @@ Steve Kemp <steve@steve.org.uk>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2014 Steve Kemp <steve@steve.org.uk>.
+Copyright (C) 2014-2015 Steve Kemp <steve@steve.org.uk>.
 
 This code was developed for an online Git-based DNS hosting solution,
 which can be found at:
