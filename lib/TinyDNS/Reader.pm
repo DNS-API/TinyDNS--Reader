@@ -162,7 +162,7 @@ Steve Kemp <steve@steve.org.uk>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2014 Steve Kemp <steve@steve.org.uk>.
+Copyright (C) 2014-2015 Steve Kemp <steve@steve.org.uk>.
 
 This code was developed for an online Git-based DNS hosting solution,
 which can be found at:
