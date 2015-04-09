@@ -64,6 +64,11 @@ sub new
     bless( $self, $class );
 
     #
+    #  Record the line we were created with.
+    #
+    $self->{ 'input' } = $line;
+
+    #
     #  The record-type is the first character.
     #
     my $rec = substr( $line, 0, 1 );
@@ -196,6 +201,20 @@ sub new
     }
     return $self;
 
+}
+
+
+=head2 input
+
+Return the text that this record was created with.
+
+=cut
+
+sub input
+{
+    my ($self) = (@_);
+
+    return ( $self->{ 'input' } );
 }
 
 
