@@ -1,4 +1,10 @@
 
+0.7.3 - 9th Apri 2015
+        Updated copyright years.
+	Updated some spelling in the text/POD.
+	Handle invalid records more appropriately in TinyDNS::Reader::Merged
+	Added TinyDNS::Record::input() method.
+
 0.7.2 - 2nd December 2014
 	Updated to suppot "&" / NS records.
 
