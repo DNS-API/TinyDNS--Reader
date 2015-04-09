@@ -121,6 +121,10 @@ sub parse
 
     foreach my $r (@$records)
     {
+
+        # Test that the record was recognized.
+        next unless ( $r->valid() );
+
         my $name = $r->name();
         my $type = $r->type();
         my $val  = $r->value();
@@ -137,6 +141,10 @@ sub parse
         #
         foreach my $x (@$records)
         {
+
+            # Test that the record was recognized.
+            next if ( !$x->valid() );
+
             my $name2 = $x->name();
             my $type2 = $x->type();
             my $val2  = $x->value();
