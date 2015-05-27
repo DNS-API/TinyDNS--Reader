@@ -103,21 +103,37 @@ sub new
     elsif ( $rec eq '_' )
     {
 
-        # $name.$proto.$domain : $hostname : $port : $priority : $weight : $ttl
+        # The long-form is:
+        #  $name.$proto.$domain : $hostname : $port : $prior : $weight : $ttl
+        #
+        # The short-form is:
+        #  $name.$proto.$domain : $hostname : $port : $ttl
+        #
         $self->{ 'type' } = "SRV";
-
-        # Ensure the leading "_" isn't swallowed
         $self->{ 'name' } = "_" . $data[0];
 
-        my $host     = $data[1] || 0;
-        my $port     = $data[2] || 0;
-        my $priority = $data[3] || 1;
-        my $weight   = $data[4] || 10;
-        my $ttl      = $data[5] || 300;
+        if ( scalar(@data) == 4 )
+        {
+            my $host = $data[1] || 0;
+            my $port = $data[2] || 0;
+            my $ttl  = $data[3] || 300;
 
-        # Bogus priority + weight
-        $self->{ 'value' } = "$priority $weight $port $host";
-        $self->{ 'ttl' }   = $ttl;
+            # Bogus priority + weight
+            $self->{ 'value' } = "1 10 $port $host";
+            $self->{ 'ttl' }   = $ttl;
+        }
+        else
+        {
+            my $host     = $data[1] || 0;
+            my $port     = $data[2] || 0;
+            my $priority = $data[3] || 1;
+            my $weight   = $data[4] || 10;
+            my $ttl      = $data[5] || 300;
+
+            # Bogus priority + weight
+            $self->{ 'value' } = "$priority $weight $port $host";
+            $self->{ 'ttl' }   = $ttl;
+        }
 
     }
     elsif ( $rec eq '6' )
