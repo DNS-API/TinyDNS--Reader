@@ -106,7 +106,12 @@ sub new
         # $name.$proto.name : $hostname : $port : $ttl
         $self->{ 'type' }  = "SRV";
         $self->{ 'name' }  = "_" . $data[0];
-        $self->{ 'value' } = $data[1] . ":" . $data[2];
+
+        my $port = $data[2] || 0;
+        my $host = $data[1] || 0;
+
+        # Bogus priority + weight
+        $self->{ 'value' } = "1 10 $port $host";
         $self->{ 'ttl' }   = $data[3] || 300;
 
     }
