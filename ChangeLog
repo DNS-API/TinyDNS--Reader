@@ -1,6 +1,9 @@
 
-0.7.3 - 9th Apri 2015
-        Updated copyright years.
+0.7.4 - 27th May 2015
+    Added support for SRV records with "_" prefix, again non-standard.
+
+0.7.3 - 9th April 2015
+    Updated copyright years.
 	Updated some spelling in the text/POD.
 	Handle invalid records more appropriately in TinyDNS::Reader::Merged
 	Added TinyDNS::Record::input() method.
