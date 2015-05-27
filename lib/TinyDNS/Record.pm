@@ -18,7 +18,10 @@ We ignore SOA records, which Amazon would handle for us.
 Our TXT records handling uses "T" not ":".
 
 =item *
-Our MX record handling allows a name to be set with no IP.
+Our SRV records are non-standard.
+
+=item *
+Our MX record handling allows a name to be set without IP.
 
 =back
 
@@ -106,7 +109,7 @@ sub new
         # The long-form is:
         #  $name.$proto.$domain : $hostname : $port : $prior : $weight : $ttl
         #
-        # The short-form is:
+        # The short-form is much more common and useful:
         #  $name.$proto.$domain : $hostname : $port : $ttl
         #
         $self->{ 'type' } = "SRV";
