@@ -103,16 +103,21 @@ sub new
     elsif ( $rec eq '_' )
     {
 
-        # $name.$proto.name : $hostname : $port : $ttl
-        $self->{ 'type' }  = "SRV";
-        $self->{ 'name' }  = "_" . $data[0];
+        # $name.$proto.$domain : $hostname : $port : $priority : $weight : $ttl
+        $self->{ 'type' } = "SRV";
 
-        my $port = $data[2] || 0;
-        my $host = $data[1] || 0;
+        # Ensure the leading "_" isn't swallowed
+        $self->{ 'name' } = "_" . $data[0];
+
+        my $host     = $data[1] || 0;
+        my $port     = $data[2] || 0;
+        my $priority = $data[3] || 1;
+        my $weight   = $data[4] || 10;
+        my $ttl      = $data[5] || 300;
 
         # Bogus priority + weight
-        $self->{ 'value' } = "1 10 $port $host";
-        $self->{ 'ttl' }   = $data[3] || 300;
+        $self->{ 'value' } = "$priority $weight $port $host";
+        $self->{ 'ttl' }   = $ttl;
 
     }
     elsif ( $rec eq '6' )
