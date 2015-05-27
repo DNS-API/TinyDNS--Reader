@@ -100,6 +100,16 @@ sub new
         $self->{ 'value' } = $data[1];
         $self->{ 'ttl' }   = $data[2] || 300;
     }
+    elsif ( $rec eq '_' )
+    {
+
+        # $name.$proto.name : $hostname : $port : $ttl
+        $self->{ 'type' }  = "SRV";
+        $self->{ 'name' }  = "_" . $data[0];
+        $self->{ 'value' } = $data[1] . ":" . $data[2];
+        $self->{ 'ttl' }   = $data[3] || 300;
+
+    }
     elsif ( $rec eq '6' )
     {
 
