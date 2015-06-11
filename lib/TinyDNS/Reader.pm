@@ -128,12 +128,16 @@ sub parse
     foreach my $line ( split( /[\n\r]/, $self->{ 'data' } ) )
     {
         chomp($line);
+
+        # Skip empty lines.
         next if ( !$line || !length($line) );
 
-        #
-        #  Ignore comments
-        #
-        next if ( $line =~ /^\s*#/ );
+        # Strip trailing comments.
+        $line =~ s/#.*$//s;
+
+        # Skip empty lines.
+        next if ( !$line || !length($line) );
+
 
         #
         #  Ignore "." + ":" records
