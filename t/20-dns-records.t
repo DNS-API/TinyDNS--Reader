@@ -257,6 +257,7 @@ Cssh.steve.org.uk:mail.steve.org.uk:300
 #  A TXT record - NOTE That the value must be quoted.
 #
 Tedinburgh.io:"v=spf1 mx a ptr ip4:1.2.3.4 ?all":300
+Tsub.edinburgh.io:"v=spf1 mx a ptr ip4:1.2.3.4 ?all"
 
 
 #

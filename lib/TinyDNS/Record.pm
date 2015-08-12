@@ -210,12 +210,12 @@ sub new
         #
         # name : "data " : [TTL]
         #
-        if ( $line =~ /([^:]+):"([^"]+)":([0-9]+)$/ )
+        if ( $line =~ /([^:]+):"([^"]+)":*([0-9]*)$/ )
         {
             $self->{ 'type' }  = "TXT";
             $self->{ 'name' }  = $1;
             $self->{ 'value' } = "\"$2\"";
-            $self->{ 'ttl' }   = $3;
+            $self->{ 'ttl' }   = $3 || 3600;
         }
         else
         {
