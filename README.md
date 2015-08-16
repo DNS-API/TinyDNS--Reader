@@ -23,7 +23,7 @@ This module was put together for the [Git-based DNS hosting service](https://dns
 
 * We ignore SOA records.
 * Our TXT record (which should have a `:`-prefix) is non-standard/weird.
-       * We use `Tname:value[:ttl]` instead.  Which is cleaner.
+       * We use `Tname:"value goes here"[:ttl]` instead.  Which is cleaner.
 
 That said there is actually no module available on CPAN for _reading_ TinyDNS files, just for generating them, so despite the compatibility niggles I've uploaded it regardless.
 
