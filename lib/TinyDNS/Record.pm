@@ -296,7 +296,14 @@ If no TTL was explicitly specified we default to 300 seconds, or five minutes.
 sub ttl
 {
     my ($self) = (@_);
-    return ( $self->{ 'ttl' } || 300 );
+
+    if ( $self->{ 'ttl' } &&
+         $self->{ 'ttl' } =~ /^([0-9]+)$/ )
+    {
+        return $self->{ 'ttl' };
+    }
+
+    return 300;
 }
 
 
