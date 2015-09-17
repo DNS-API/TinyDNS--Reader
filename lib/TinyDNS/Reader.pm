@@ -46,7 +46,7 @@ package TinyDNS::Reader;
 
 use TinyDNS::Record;
 
-our $VERSION = '0.7.5';
+our $VERSION = '0.7.6';
 
 
 

@@ -1,4 +1,7 @@
 
+0.7.6 - 17th Sep 2015
+    Ensure that TTLs are always numeric.
+
 0.7.5 - 12th Aug 2015
     Ensure that TXT records without TTLs are parsed.
 
