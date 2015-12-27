@@ -161,23 +161,25 @@ sub new
     {
 
         #
-        # @xxx:name:ttl
-        # @xxx:[ip]:name:ttl
+        # @name:destination:priority:TTL
         #
         if ( scalar(@data) == 4 )
         {
             $self->{ 'type' }     = "MX";
             $self->{ 'name' }     = $data[0];
-            $self->{ 'priority' } = $data[3] || "15";
-            $self->{ 'ttl' }      = $data[4] || 300;
-            $self->{ 'value' }    = $self->{ 'priority' } . " " . $data[2];
+            $self->{ 'priority' } = $data[2] || "15";
+            $self->{ 'ttl' }      = $data[3] || 300;
+            $self->{ 'value' }    = $self->{ 'priority' } . " " . $data[1];
         }
         if ( scalar(@data) == 3 )
         {
+            #
+            # @name:destination:priority
+            #
             $self->{ 'type' }     = "MX";
             $self->{ 'name' }     = $data[0];
             $self->{ 'priority' } = $data[2] || "15";
-            $self->{ 'ttl' }      = $data[3] || 300;
+            $self->{ 'ttl' }      = 300;
             $self->{ 'value' }    = $self->{ 'priority' } . " " . $data[1];
         }
     }

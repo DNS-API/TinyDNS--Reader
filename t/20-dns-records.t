@@ -46,7 +46,7 @@ sub getObj
 #
 # Traditional MX.
 #
-my @all = getObj("\@edinburgh.io::mail.steve.org.uk:15");
+my @all = getObj("\@edinburgh.io:mail.steve.org.uk:15");
 is( scalar(@all),         1,                      "One record" );
 is( $all[0]->{ 'type' },  "MX",                   "Got the right type" );
 is( $all[0]->{ 'name' },  "edinburgh.io",         "Got the right name" );
