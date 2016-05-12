@@ -138,11 +138,15 @@ sub parse
         # Skip empty lines.
         next if ( !$line || !length($line) );
 
-
         #
         #  Ignore "." + ":" records
         #
         next if ( $line =~ /^\s*[:.]/ );
+
+        #
+        #  Ensure the line is lower-cased
+        #
+        $line = lc($line);
 
         #
         #  Construct a new object, and add it to the list.

@@ -66,6 +66,12 @@ sub new
     my $self = {};
     bless( $self, $class );
 
+
+    #
+    #  Ensure we process as lower-case
+    #
+    $line = lc($line);
+
     #
     #  Record the line we were created with.
     #
@@ -154,7 +160,7 @@ sub new
         #     "2001:41c8:010b:0101:0000:0000:0000:0010".
         #
         my $ipv6 = $data[1];
-        my @tmp = ( $ipv6 =~ m/..../g );
+        my @tmp  = ( $ipv6 =~ m/..../g );
         $self->{ 'value' } = join( ":", @tmp );
     }
     elsif ( $rec eq '@' )
