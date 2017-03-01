@@ -66,12 +66,6 @@ sub new
     my $self = {};
     bless( $self, $class );
 
-
-    #
-    #  Ensure we process as lower-case
-    #
-    $line = lc($line);
-
     #
     #  Record the line we were created with.
     #
@@ -81,6 +75,7 @@ sub new
     #  The record-type is the first character.
     #
     my $rec = substr( $line, 0, 1 );
+    $rec = lc($rec);
 
     #
     #  Remove the record-type from the line
@@ -105,7 +100,7 @@ sub new
 
         # name : ipv4 : ttl
         $self->{ 'type' }  = "A";
-        $self->{ 'name' }  = $data[0];
+        $self->{ 'name' }  = lc $data[0];
         $self->{ 'value' } = $data[1];
         $self->{ 'ttl' }   = $data[2] || 300;
     }
@@ -150,7 +145,7 @@ sub new
 
         # name : ipv6 : ttl
         $self->{ 'type' } = "AAAA";
-        $self->{ 'name' } = $data[0];
+        $self->{ 'name' } = lc $data[0];
         $self->{ 'ttl' }  = $data[2] || 300;
 
         #
@@ -172,7 +167,7 @@ sub new
         if ( scalar(@data) == 4 )
         {
             $self->{ 'type' }     = "MX";
-            $self->{ 'name' }     = $data[0];
+            $self->{ 'name' }     = lc $data[0];
             $self->{ 'priority' } = $data[2] || "15";
             $self->{ 'ttl' }      = $data[3] || 300;
             $self->{ 'value' }    = $self->{ 'priority' } . " " . $data[1];
@@ -183,7 +178,7 @@ sub new
             # @name:destination:priority
             #
             $self->{ 'type' }     = "MX";
-            $self->{ 'name' }     = $data[0];
+            $self->{ 'name' }     = lc $data[0];
             $self->{ 'priority' } = $data[2] || "15";
             $self->{ 'ttl' }      = 300;
             $self->{ 'value' }    = $self->{ 'priority' } . " " . $data[1];
@@ -197,7 +192,7 @@ sub new
         #   &host.example.com:IGNORED:ns1.secure.net:ttl
         #
         $self->{ 'type' }  = "NS";
-        $self->{ 'name' }  = $data[0];
+        $self->{ 'name' }  = lc $data[0];
         $self->{ 'value' } = $data[2];
         $self->{ 'ttl' }   = $data[3] || 300;
     }
@@ -208,7 +203,7 @@ sub new
         # name :  dest : [ttl]
         #
         $self->{ 'type' }  = "CNAME";
-        $self->{ 'name' }  = $data[0];
+        $self->{ 'name' }  = lc $data[0];
         $self->{ 'value' } = $data[1];
         $self->{ 'ttl' }   = $data[2] || 300;
     }
@@ -221,7 +216,7 @@ sub new
         if ( $line =~ /([^:]+):"([^"]+)":*([0-9]*)$/ )
         {
             $self->{ 'type' }  = "TXT";
-            $self->{ 'name' }  = $1;
+            $self->{ 'name' }  = lc $1;
             $self->{ 'value' } = "\"$2\"";
             $self->{ 'ttl' }   = $3 || 3600;
         }
@@ -237,7 +232,7 @@ sub new
         #  ptr : "rdns " : [TTL]
         #
         $self->{ 'type' }  = "PTR";
-        $self->{ 'name' }  = $data[0];
+        $self->{ 'name' }  = lc $data[0];
         $self->{ 'value' } = $data[1];
         $self->{ 'ttl' }   = $data[2] || 300;
     }

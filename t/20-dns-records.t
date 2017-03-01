@@ -51,7 +51,7 @@ is( scalar(@all),         1,                      "One record" );
 is( $all[0]->{ 'type' },  "MX",                   "Got the right type" );
 is( $all[0]->{ 'name' },  "edinburgh.io",         "Got the right name" );
 is( $all[0]->{ 'value' }, "15 mail.steve.org.uk", "Got the right value" );
-is( $all[0]->{ 'ttl' },   "300", "Got the default TTL" );
+is( $all[0]->{ 'ttl' },   "300",                  "Got the default TTL" );
 
 
 #
@@ -62,7 +62,7 @@ is( scalar(@all),         1,                      "One record" );
 is( $all[0]->{ 'type' },  "MX",                   "Got the right type" );
 is( $all[0]->{ 'name' },  "example.com",          "Got the right name" );
 is( $all[0]->{ 'value' }, "15 mail.steve.org.uk", "Got the right value" );
-is( $all[0]->{ 'ttl' }, "3600", "Got the correct TTL" );
+is( $all[0]->{ 'ttl' },   "3600",                 "Got the correct TTL" );
 
 
 #

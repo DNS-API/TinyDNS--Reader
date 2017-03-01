@@ -144,11 +144,6 @@ sub parse
         next if ( $line =~ /^\s*[:.]/ );
 
         #
-        #  Ensure the line is lower-cased
-        #
-        $line = lc($line);
-
-        #
         #  Construct a new object, and add it to the list.
         #
         my $rec = TinyDNS::Record->new($line);

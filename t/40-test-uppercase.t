@@ -84,5 +84,6 @@ foreach my $line (<DATA>)
 #
 __DATA__
 +webmail.steve.org.uk:80.68.84.104:300 webmail.steve.org.uk A 80.68.84.104
-CSSH.steve.ORG.uk:mail.STEVE.org.uk:300 ssh.steve.org.uk CNAME mail.steve.org.uk
+CSSH.steve.ORG.uk:mail.steve.org.uk:300 ssh.steve.org.uk CNAME mail.steve.org.uk
 +www.steve.ORG.uk:1.2.3.4:300 www.steve.org.uk A 1.2.3.4
+Tsteve.org.uk:"ThisisMIXEDcase":300 steve.org.uk TXT "ThisisMIXEDcase"
