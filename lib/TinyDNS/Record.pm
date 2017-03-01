@@ -67,6 +67,11 @@ sub new
     bless( $self, $class );
 
     #
+    #  Strip leading/trailing space.
+    #
+    $line =~ s/^\s+|\s+$//g if ( $line );
+
+    #
     #  Record the line we were created with.
     #
     $self->{ 'input' } = $line;
