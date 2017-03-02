@@ -118,14 +118,13 @@ sub new
             {
                 $self->{ 'type' } .= "ERROR";
                 $self->{ 'error' } =
-                  "Invalid IPv4 address - max value of octet is 255 " . $self->{ 'value' };
+                  "Invalid IPv4 address - max value of octet is 255.";
             }
         }
         if ( $c != 4 )
         {
             $self->{ 'type' } .= "ERROR";
-            $self->{ 'error' } =
-              "Invalid IPv4 address - too many octets " . $self->{ 'value' };
+            $self->{ 'error' } = "Invalid IPv4 address - too many octets.";
         }
     }
     elsif ( $rec eq '_' )
@@ -188,8 +187,7 @@ sub new
         if ( $data[1] !~ /^([a-f0-9:]+)$/i )
         {
             $self->{ 'type' } .= "ERROR";
-            $self->{ 'error' } = "Invalid IPv6 address " . $self->{ 'value' };
-            carp $self->{ 'error' };
+            $self->{ 'error' } = "Invalid IPv6 address.";
         }
     }
     elsif ( $rec eq '@' )
@@ -272,8 +270,12 @@ sub new
     }
     else
     {
+        $self->{ 'type' } .= "ERROR";
+        $self->{ 'name' }  = $line;
+        $self->{ 'value' } = '';
+        $self->{ 'error' } = "Unknown record type '$rec'";
         carp "Unknown record type [$rec]: $line";
-        return;
+
     }
     return $self;
 
@@ -287,11 +289,11 @@ Return the error for this record, if any.
 
 sub error
 {
-    my( $self ) = (@_ );
+    my ($self) = (@_);
 
-    if ( $self->{'type'} && ( $self->{'type'} =~ /error/i ) )
+    if ( $self->{ 'type' } && ( $self->{ 'type' } =~ /error/i ) )
     {
-        return( $self->{'error'} );
+        return ( $self->{ 'error' } );
     }
     return "";
 }
