@@ -69,7 +69,7 @@ sub new
     #
     #  Strip leading/trailing space.
     #
-    $line =~ s/^\s+|\s+$//g if ( $line );
+    $line =~ s/^\s+|\s+$//g if ($line);
 
     #
     #  Record the line we were created with.
@@ -108,6 +108,17 @@ sub new
         $self->{ 'name' }  = lc $data[0];
         $self->{ 'value' } = $data[1];
         $self->{ 'ttl' }   = $data[2] || 300;
+
+        # Is the value valid?
+        foreach my $x ( split( /\./, $self->{ 'value' } ) )
+        {
+            if ( $x > 255 )
+            {
+                $self->{ 'type' } .= "ERROR";
+                $self->{ 'error' } =
+                  "Invalid IPv4 address " . $self->{ 'value' };
+            }
+        }
     }
     elsif ( $rec eq '_' )
     {
@@ -162,6 +173,16 @@ sub new
         my $ipv6 = $data[1];
         my @tmp  = ( $ipv6 =~ m/..../g );
         $self->{ 'value' } = join( ":", @tmp );
+
+        #
+        #  Validate.
+        #
+        if ( $data[1] !~ /^([a-f0-9:]+)$/i )
+        {
+            $self->{ 'type' } .= "ERROR";
+            $self->{ 'error' } = "Invalid IPv6 address " . $self->{ 'value' };
+            carp $self->{ 'error' };
+        }
     }
     elsif ( $rec eq '@' )
     {
