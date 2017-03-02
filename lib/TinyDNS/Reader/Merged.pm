@@ -41,7 +41,7 @@ logical object with values something like this:
 This module takes care of that for you, by merging records which consist
 of identical "name" + "type" pairs.
 
-Use it as a drop-in replacing for L<TinyDNS::Reader>.
+Use it as a drop-in replacement for L<TinyDNS::Reader>.
 
 =cut
 
@@ -150,6 +150,12 @@ sub parse
             my $val2  = $x->value();
             my $hash2 = $x->hash();
 
+            #
+            # We have record A we want to look at all
+            # other records to find one that has the
+            # same name/type - but obviously we'll
+            # encounter A again.  Skip it.
+            #
             next if ( $hash eq $hash2 );
 
             #
@@ -166,13 +172,10 @@ sub parse
             }
         }
 
-        push( @$res,
-              {  name  => $name,
-                 value => $r->value(),
-                 ttl   => $ttl,
-                 type  => $type
-              } );
-
+        #
+        # Store the object.
+        #
+        push( @$res, $r );
 
         #
         #  We've seen this name/type pair now.
@@ -197,7 +200,7 @@ Steve Kemp <steve@steve.org.uk>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2014-2015 Steve Kemp <steve@steve.org.uk>.
+Copyright (C) 2014-2017 Steve Kemp <steve@steve.org.uk>.
 
 This code was developed for an online Git-based DNS hosting solution,
 which can be found at:
