@@ -110,14 +110,22 @@ sub new
         $self->{ 'ttl' }   = $data[2] || 300;
 
         # Is the value valid?
+        my $c = 0;
         foreach my $x ( split( /\./, $self->{ 'value' } ) )
         {
+            $c += 1;
             if ( $x > 255 )
             {
                 $self->{ 'type' } .= "ERROR";
                 $self->{ 'error' } =
-                  "Invalid IPv4 address " . $self->{ 'value' };
+                  "Invalid IPv4 address - max value of octet is 255 " . $self->{ 'value' };
             }
+        }
+        if ( $c != 4 )
+        {
+            $self->{ 'type' } .= "ERROR";
+            $self->{ 'error' } =
+              "Invalid IPv4 address - too many octets " . $self->{ 'value' };
         }
     }
     elsif ( $rec eq '_' )
@@ -269,6 +277,23 @@ sub new
     }
     return $self;
 
+}
+
+=head2 error
+
+Return the error for this record, if any.
+
+=cut
+
+sub error
+{
+    my( $self ) = (@_ );
+
+    if ( $self->{'type'} && ( $self->{'type'} =~ /error/i ) )
+    {
+        return( $self->{'error'} );
+    }
+    return "";
 }
 
 
