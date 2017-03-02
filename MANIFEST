@@ -13,3 +13,5 @@ t/00-load.t
 t/10-test-strict.t
 t/20-dns-records.t
 t/30-test-merging.t
+t/40-test-uppercase.t
+t/50-errors.t
