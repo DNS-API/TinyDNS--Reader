@@ -343,7 +343,7 @@ sub type
 
 =head2 ttl
 
-Return the TTL of this recrd.
+Return the TTL of this record.
 
 If no TTL was explicitly specified we default to 300 seconds, or five minutes.
 
